@@ -7,11 +7,22 @@ from selenium.webdriver.common.by import By
 from selenium.common.exceptions import TimeoutException
 from attachments import EmailAttOnline, EmailAttOffline
 
-driver = webdriver.Firefox(executable_path="/usr/local/bin/geckodriver")
+options = Options()
+options.headless = True
+driver = webdriver.Firefox(options=options, executable_path="geckodriver.exe")  # seu path do driver
 
-username =  input("Username: ")
-password = input("Senha: ")
-delay = 15       # delay para o wait until page load
+print('*******************')
+print ("API INICIALIZADA")
+print('*******************\n\n')
+
+if options.headless == True:
+    print('Rodando script, por favor aguarde....')
+    time.sleep(3)
+    print("Pode levar alguns segundos até que o script varra todos os dados.")
+
+username =  input("Digite seu username: ")
+password = input("Digite sua senha: ")
+delay = 30       # delay para o wait until page load
 driver.get('https://app.remote.it/auth/#/sign-in') # URL ACESSADA PELO WEB DRIVER
 
 driver.find_element_by_id('sign-in-username').send_keys(username) #username
